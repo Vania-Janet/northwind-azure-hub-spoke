@@ -1,0 +1,28 @@
+flowchart LR
+  user["Laptop corporativa<br/>Fase posterior: VPN P2S"]
+
+  subgraph azure["Azure eastus"]
+    subgraph rg["rg-northwind-mvp-eastus"]
+      subgraph hub["Hub VNet<br/>10.0.0.0/16"]
+        mgmt["snet-management<br/>10.0.0.0/24"]
+        gateway["GatewaySubnet<br/>10.0.1.0/27<br/>Reservada"]
+        bastion["AzureBastionSubnet<br/>10.0.2.0/26<br/>Reservada"]
+      end
+
+      subgraph ops["Spoke Operaciones VNet<br/>10.1.0.0/16"]
+        app["snet-app-ops<br/>10.1.1.0/24<br/>Delegada a App Service"]
+        data["snet-data-ops<br/>10.1.2.0/24"]
+        pe["snet-private-endpoints-ops<br/>10.1.3.0/24"]
+      end
+
+      subgraph ventas["Spoke Ventas VNet<br/>10.2.0.0/16"]
+        appventas["snet-app-ventas<br/>10.2.1.0/24<br/>Delegada a App Service"]
+        dataventas["snet-data-ventas<br/>10.2.2.0/24"]
+        peventas["snet-private-endpoints-ventas<br/>10.2.3.0/24"]
+      end
+    end
+  end
+
+  user -. "No creado en Fase 1" .-> gateway
+  hub <-- "VNet Peering" --> ops
+  hub <-- "VNet Peering" --> ventas

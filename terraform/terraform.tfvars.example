@@ -1,0 +1,7 @@
+project      = "northwind"
+environment  = "mvp"
+location     = "eastus"
+owner        = "equipo-cloud-iimas"
+cost_center  = "CloudClass"
+criticality  = "low"
+workload     = "PrivateIntranet"
