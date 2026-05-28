@@ -4,6 +4,7 @@ on:
   push:
     branches: [app_privada_spoke]
     paths: ["app/**"]
+  workflow_dispatch:
 
 jobs:
   deploy:
