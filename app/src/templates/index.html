@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h5 class="mb-3">Agente IA — Departamento de {{ user.department | title }}</h5>
+
+        <div id="chat-box" class="border rounded p-3 mb-3 bg-light" style="height: 420px; overflow-y: auto;">
+            <p class="text-muted text-center small">Haz una pregunta sobre tu departamento.</p>
+        </div>
+
+        <form id="chat-form">
+            <div class="input-group">
+                <input type="text" id="user-input" class="form-control"
+                       placeholder="Escribe tu pregunta..." required>
+                <button class="btn btn-primary" type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+const chatBox = document.getElementById('chat-box');
+const form = document.getElementById('chat-form');
+const input = document.getElementById('user-input');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const question = input.value.trim();
+    if (!question) return;
+
+    appendMessage('Tú', question, 'user');
+    input.value = '';
+    input.disabled = true;
+
+    try {
+        const res = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({message: question})
+        });
+        const data = await res.json();
+        appendMessage('Agente', data.reply || data.error, 'agent');
+    } catch {
+        appendMessage('Error', 'No se pudo conectar con el servidor.', 'agent');
+    } finally {
+        input.disabled = false;
+        input.focus();
+    }
+});
+
+function appendMessage(sender, text, type) {
+    const div = document.createElement('div');
+    div.className = 'mb-2 ' + (type === 'user' ? 'text-end' : '');
+    div.innerHTML = '<strong>' + sender + ':</strong> ' + text;
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+</script>
+{% endblock %}
