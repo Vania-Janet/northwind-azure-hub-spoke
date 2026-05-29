@@ -46,8 +46,8 @@ def save_message(user_id: str, department: str, role: str, content: str):
     try:
         cursor = conn.cursor()
         cursor.execute(
-            "INSERT INTO chat_history (user_id, department, role, content) VALUES (?, ?, ?, ?)",
-            user_id, department, role, content,
+            "INSERT INTO chat_history (user_id, department, role, content) VALUES (%s, %s, %s, %s)",
+            (user_id, department, role, content),
         )
         conn.commit()
     except Exception:
@@ -64,13 +64,13 @@ def get_history(user_id: str, limit: int = 20) -> list:
         cursor = conn.cursor()
         cursor.execute("""
             SELECT role, content FROM (
-                SELECT TOP (?) role, content, created_at
+                SELECT TOP (%d) role, content, created_at
                 FROM chat_history
-                WHERE user_id = ?
+                WHERE user_id = %s
                 ORDER BY created_at DESC
             ) sub
             ORDER BY created_at ASC
-        """, limit, user_id)
+        """, (limit, user_id))
         return [{"role": row[0], "content": row[1]} for row in cursor.fetchall()]
     except Exception:
         return []
