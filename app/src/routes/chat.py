@@ -48,6 +48,14 @@ def chat():
     return jsonify({"reply": reply})
 
 
+@chat_bp.route("/api/chat/history", methods=["GET"])
+def get_history():
+    user = get_current_user()
+    if "history" not in session:
+        session["history"] = database.get_history(user["email"])
+    return jsonify({"history": session["history"]})
+
+
 @chat_bp.route("/api/chat/clear", methods=["POST"])
 def clear_history():
     session.pop("history", None)

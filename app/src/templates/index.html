@@ -24,6 +24,19 @@ const chatBox = document.getElementById('chat-box');
 const form = document.getElementById('chat-form');
 const input = document.getElementById('user-input');
 
+async function loadHistory() {
+    const res = await fetch('/api/chat/history');
+    const data = await res.json();
+    if (data.history && data.history.length > 0) {
+        chatBox.innerHTML = '';
+        data.history.forEach(msg => {
+            const sender = msg.role === 'user' ? 'Tú' : 'Agente';
+            appendMessage(sender, msg.content, msg.role === 'user' ? 'user' : 'agent');
+        });
+    }
+}
+loadHistory();
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const question = input.value.trim();
