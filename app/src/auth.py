@@ -1,6 +1,6 @@
 import base64
 import json
-from flask import request
+from flask import request, session
 import config
 
 _DEPT_KEYWORDS = {
@@ -33,13 +33,7 @@ def get_current_user():
         except Exception:
             pass
 
-    user = {
-        "name": config.LOCAL_DEV_USER,
-        "email": config.LOCAL_DEV_USER,
-        "department": config.LOCAL_DEV_DEPARTMENT,
-    }
-
-    # Demo override: ?dept=ventas / ?dept=ops (ignored when Easy Auth is active)
+    # Demo override: ?dept=ventas / ?dept=ops — persiste en sesión para las llamadas API
     dept_param = request.args.get("dept", "").lower()
     if dept_param in _VALID_DEPTS:
         user = {
@@ -47,8 +41,17 @@ def get_current_user():
             "email": f"demo-{dept_param}@northwind.com",
             "department": dept_param,
         }
+        session["demo_user"] = user
+        return user
 
-    return user
+    if "demo_user" in session:
+        return session["demo_user"]
+
+    return {
+        "name": config.LOCAL_DEV_USER,
+        "email": config.LOCAL_DEV_USER,
+        "department": config.LOCAL_DEV_DEPARTMENT,
+    }
 
 
 def _claims_dict(principal):

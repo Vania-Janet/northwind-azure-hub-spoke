@@ -29,7 +29,7 @@
 
 <!-- Modal de archivos del departamento -->
 <div class="modal fade" id="filesModal" tabindex="-1" aria-labelledby="filesModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="filesModalLabel">Archivos — {{ user.department | title }}</h5>
@@ -38,7 +38,11 @@
             <div class="modal-body" id="files-body">
                 <p class="text-muted text-center">Cargando...</p>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" id="files-footer" style="display:none">
+                <button type="button" class="btn btn-sm btn-outline-secondary" id="back-btn">← Volver</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+            <div class="modal-footer" id="files-footer-default">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
@@ -50,32 +54,73 @@ const chatBox = document.getElementById('chat-box');
 const form = document.getElementById('chat-form');
 const input = document.getElementById('user-input');
 
-document.getElementById('filesModal').addEventListener('show.bs.modal', async () => {
-    const body = document.getElementById('files-body');
-    body.innerHTML = '<p class="text-muted text-center">Cargando...</p>';
+const filesBody = document.getElementById('files-body');
+const filesFooter = document.getElementById('files-footer');
+const filesFooterDefault = document.getElementById('files-footer-default');
+
+function showFileList(files, container) {
+    filesFooter.style.display = 'none';
+    filesFooterDefault.style.display = '';
+    if (!files || files.length === 0) {
+        filesBody.innerHTML = '<p class="text-muted text-center">No hay archivos en este contenedor.</p>';
+        return;
+    }
+    const rows = files.map(f =>
+        `<tr style="cursor:pointer" onclick="openFile('${f.name}')">
+            <td><span class="text-primary">${f.name}</span></td>
+            <td class="text-end text-muted small">${f.size}</td>
+        </tr>`
+    ).join('');
+    filesBody.innerHTML = `<p class="text-muted small mb-2">Contenedor: <code>${container}</code> — haz clic en un archivo para verlo</p>
+        <table class="table table-sm table-hover mb-0">
+            <thead><tr><th>Archivo</th><th class="text-end">Tamaño</th></tr></thead>
+            <tbody>${rows}</tbody>
+        </table>`;
+}
+
+async function openFile(filename) {
+    filesBody.innerHTML = '<p class="text-muted text-center">Cargando contenido...</p>';
+    filesFooter.style.display = '';
+    filesFooterDefault.style.display = 'none';
+    try {
+        const res = await fetch(`/api/files/${encodeURIComponent(filename)}`);
+        const data = await res.json();
+        if (data.error) {
+            filesBody.innerHTML = `<p class="text-danger">${data.error}</p>`;
+            return;
+        }
+        if (data.type === 'text') {
+            const escaped = data.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+            filesBody.innerHTML = `<h6 class="mb-2">${filename}</h6>
+                <pre class="bg-light p-3 rounded small" style="max-height:400px;overflow-y:auto;white-space:pre-wrap">${escaped}</pre>`;
+        } else {
+            filesBody.innerHTML = `<p class="text-muted text-center">${data.message || 'Vista previa no disponible.'}</p>`;
+        }
+    } catch {
+        filesBody.innerHTML = '<p class="text-danger text-center">Error al cargar el archivo.</p>';
+    }
+}
+
+document.getElementById('back-btn').addEventListener('click', () => loadFileList());
+
+async function loadFileList() {
+    filesBody.innerHTML = '<p class="text-muted text-center">Cargando...</p>';
+    filesFooter.style.display = 'none';
+    filesFooterDefault.style.display = '';
     try {
         const res = await fetch('/api/files');
         const data = await res.json();
         if (data.error) {
-            body.innerHTML = `<p class="text-warning text-center">${data.error}</p>`;
+            filesBody.innerHTML = `<p class="text-warning text-center">${data.error}</p>`;
             return;
         }
-        if (!data.files || data.files.length === 0) {
-            body.innerHTML = '<p class="text-muted text-center">No hay archivos en este contenedor.</p>';
-            return;
-        }
-        const rows = data.files.map(f =>
-            `<tr><td>${f.name}</td><td class="text-end text-muted small">${f.size_kb} KB</td></tr>`
-        ).join('');
-        body.innerHTML = `<p class="text-muted small mb-2">Contenedor: <code>${data.container}</code></p>
-            <table class="table table-sm table-hover mb-0">
-                <thead><tr><th>Archivo</th><th class="text-end">Tamaño</th></tr></thead>
-                <tbody>${rows}</tbody>
-            </table>`;
+        showFileList(data.files, data.container);
     } catch {
-        body.innerHTML = '<p class="text-danger text-center">Error al conectar con el almacenamiento.</p>';
+        filesBody.innerHTML = '<p class="text-danger text-center">Error al conectar con el almacenamiento.</p>';
     }
-});
+}
+
+document.getElementById('filesModal').addEventListener('show.bs.modal', loadFileList);
 
 async function loadHistory() {
     const res = await fetch('/api/chat/history');
