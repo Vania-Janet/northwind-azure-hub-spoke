@@ -56,6 +56,20 @@ def save_message(user_id: str, department: str, role: str, content: str):
         conn.close()
 
 
+def clear_history(user_id: str):
+    conn = _get_connection()
+    if conn is None:
+        return
+    try:
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM chat_history WHERE user_id = %s", (user_id,))
+        conn.commit()
+    except Exception:
+        pass
+    finally:
+        conn.close()
+
+
 def get_history(user_id: str, limit: int = 20) -> list:
     conn = _get_connection()
     if conn is None:

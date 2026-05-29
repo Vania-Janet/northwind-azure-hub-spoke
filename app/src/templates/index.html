@@ -3,7 +3,10 @@
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <h5 class="mb-3">Agente IA — Departamento de {{ user.department | title }}</h5>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0">Agente IA — Departamento de {{ user.department | title }}</h5>
+            <button id="clear-btn" class="btn btn-sm btn-outline-secondary">Nueva conversación</button>
+        </div>
 
         <div id="chat-box" class="border rounded p-3 mb-3 bg-light" style="height: 420px; overflow-y: auto;">
             <p class="text-muted text-center small">Haz una pregunta sobre tu departamento.</p>
@@ -36,6 +39,11 @@ async function loadHistory() {
     }
 }
 loadHistory();
+
+document.getElementById('clear-btn').addEventListener('click', async () => {
+    await fetch('/api/chat/clear', { method: 'POST' });
+    chatBox.innerHTML = '<p class="text-muted text-center small">Haz una pregunta sobre tu departamento.</p>';
+});
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
