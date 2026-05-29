@@ -2,11 +2,17 @@ import config
 
 
 def _get_connection():
-    if not config.AZURE_SQL_CONNECTION_STRING:
+    if not config.AZURE_SQL_SERVER:
         return None
     try:
-        import pyodbc
-        return pyodbc.connect(config.AZURE_SQL_CONNECTION_STRING, timeout=5)
+        import pymssql
+        return pymssql.connect(
+            server=config.AZURE_SQL_SERVER,
+            user=config.AZURE_SQL_USER,
+            password=config.AZURE_SQL_PASSWORD,
+            database=config.AZURE_SQL_DATABASE,
+            timeout=5,
+        )
     except Exception:
         return None
 
