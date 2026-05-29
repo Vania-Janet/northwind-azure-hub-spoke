@@ -1,0 +1,49 @@
+REPORTE DE VENTAS MENSUAL — NORTHWIND TRADERS
+Período: Mayo 2025 | Departamento de Ventas
+
+RESUMEN EJECUTIVO
+Mayo cerró con ingresos de USD 487,300, un 6.8% sobre el objetivo mensual (USD 456,000).
+Se incorporaron 12 nuevos clientes, el mejor mes de captación en lo que va del año.
+
+RESULTADOS POR CATEGORÍA
+
+Categoría          | Ingresos Mayo | vs. Abril | vs. Objetivo
+-------------------|---------------|-----------|-------------
+Bebidas            | USD 152,400   | +9.2%     | +8.1% ✓
+Condimentos        | USD  89,700   | +2.1%     | -1.3%
+Lácteos y quesos   | USD  78,200   | +14.5%    | +12.0% ✓ (mejor categoría)
+Conservas          | USD  71,100   | -3.2%     | -5.8% ✗
+Cereales y granos  | USD  58,900   | +5.7%     | +4.4% ✓
+Especialidades     | USD  37,000   | +1.8%     | +2.2% ✓
+
+CLIENTES TOP 5 POR VOLUMEN (Mayo)
+1. Restaurantes Unidos S.A. — USD 42,800 (PLATINUM) — +15% vs. mes anterior
+2. Supermercados del Sur — USD 38,500 (PLATINUM) — pedido estacional de invierno
+3. Hotel & Resorts Corp. — USD 31,200 (GOLD) — cliente nuevo, gran potencial
+4. Distribuidora Central — USD 28,700 (GOLD) — -8% vs. abril (investigar)
+5. Colegio Mayor — USD 19,400 (SILVER) — renovó contrato anual
+
+CAPTACIÓN Y RETENCIÓN
+- Nuevos clientes adquiridos: 12 (objetivo: 8) ✓
+- Clientes en estado "Inactivo" (>90 días sin compra): 23 → 19 (4 reactivados)
+- Clientes perdidos en el mes: 2 (ambos por precio — competencia con proveedor directo)
+- Tasa de retención mensual: 97.1% (objetivo ≥ 96%) ✓
+- NPS (Net Promoter Score): 68 — encuesta enviada a 320 clientes, 184 respuestas
+
+PIPELINE Y PROYECCIÓN JUNIO
+Oportunidades en negociación activa: 8 cuentas por USD 124,000 potencial
+Probabilidad de cierre en junio: 3 cuentas confirmadas (USD 51,000) + 2 avanzadas (USD 39,000 est.)
+Objetivo junio: USD 470,000 (ajustado por mes de invierno — menor que mayo en estacionalidad bebidas frías)
+Proyección conservadora: USD 478,000 | Proyección optimista: USD 498,000
+
+ALERTAS Y ACCIONES
+! Distribuidora Central bajó 8% — ejecutivo Carla R. programó visita para el 05/06
+! Categoría Conservas por debajo del objetivo — revisar precios vs. competencia (reunión el 10/06)
+✓ Lácteos superó proyección por tercer mes consecutivo — evaluar ampliar catálogo de quesos importados
+✓ Hotel & Resorts Corp. (nuevo GOLD) — propuesta de contrato anual en preparación
+
+COMISIONES DEL MES
+Total comisiones devengadas: USD 14,800
+Ejecutivo destacado: Marco V. — USD 3,950 en comisiones (7 cierres, incluido Hotel & Resorts)
+
+Elaborado por: Jefe de Ventas | Aprobado por: Gerente Comercial

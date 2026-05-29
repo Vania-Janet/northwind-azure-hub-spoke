@@ -1,5 +1,6 @@
 from flask import Flask
 import config
+import database
 from routes.health import health_bp
 from routes.chat import chat_bp
 
@@ -9,6 +10,7 @@ def create_app():
     app.secret_key = config.FLASK_SECRET_KEY
     app.register_blueprint(health_bp)
     app.register_blueprint(chat_bp)
+    database.ensure_table()
     return app
 
 

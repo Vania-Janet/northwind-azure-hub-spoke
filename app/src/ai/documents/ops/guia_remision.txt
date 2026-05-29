@@ -1,0 +1,39 @@
+GUÍA DE REMISIÓN — NORTHWIND TRADERS
+Departamento de Operaciones | Versión 2.1
+
+1. ¿QUÉ ES UNA GUÍA DE REMISIÓN?
+Una guía de remisión es el documento que acompaña a cada envío de mercadería. Certifica que el producto
+salió del almacén en las condiciones descritas y es el respaldo legal del traslado entre origen y destino.
+
+2. CUÁNDO SE EMITE
+- Toda salida de almacén (venta, traslado interno, devolución al proveedor) debe llevar guía de remisión.
+- Se emite ANTES de que el transportista retire la mercadería.
+- No se permite el despacho sin guía autorizada por el Jefe de Operaciones o su delegado.
+
+3. DATOS OBLIGATORIOS
+- Número correlativo (generado por el sistema ERP)
+- Fecha y hora de emisión
+- Origen: dirección del almacén Northwind
+- Destino: dirección del cliente o almacén destino
+- Descripción del producto (nombre, código SKU, cantidad, unidad de medida)
+- Peso bruto total del envío (en kg)
+- Datos del transportista: nombre, RUT, placa del vehículo
+- Firma del despachador y sello de almacén
+
+4. PROCESO DE EMISIÓN
+Paso 1 — El área de Ventas registra la orden en el ERP.
+Paso 2 — Operaciones verifica stock disponible y reserva los items.
+Paso 3 — El sistema genera la guía de remisión automáticamente.
+Paso 4 — El despachador imprime 3 copias: cliente, transportista, archivo interno.
+Paso 5 — El Jefe de Operaciones (o delegado) firma y sella.
+Paso 6 — Se adjunta la copia del cliente al paquete antes del despacho.
+
+5. DEVOLUCIONES
+Si el cliente rechaza el pedido, el transportista debe retornar la guía original con la observación escrita
+del motivo. Operaciones registra la devolución en el ERP en un plazo máximo de 24 horas.
+
+6. ARCHIVO Y RETENCIÓN
+Las guías físicas se archivan en el Departamento de Operaciones por 5 años (requisito legal tributario).
+Las copias digitales (escaneadas) se guardan en el sistema por 7 años.
+
+CONTACTO: Para consultas sobre guías de remisión, contactar a operaciones@northwind-mvp.com

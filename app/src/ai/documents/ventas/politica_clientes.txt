@@ -1,0 +1,52 @@
+POLÍTICA DE GESTIÓN DE CLIENTES — NORTHWIND TRADERS
+Departamento de Ventas | Versión 3.0 | Enero 2025
+
+1. SEGMENTACIÓN DE CLIENTES
+Northwind clasifica a sus clientes en cuatro categorías según volumen anual de compra:
+
+- PLATINUM (> USD 100,000/año): Atención personalizada con ejecutivo dedicado. Descuento base: 15%.
+  Crédito: 60 días. Visita mensual obligatoria. Prioridad en stock y despachos.
+- GOLD (USD 50,000–100,000/año): Ejecutivo de cuenta compartido. Descuento base: 10%.
+  Crédito: 45 días. Visita bimestral.
+- SILVER (USD 15,000–50,000/año): Atención por ejecutivo de zona. Descuento base: 5%.
+  Crédito: 30 días. Contacto mensual por teléfono o correo.
+- STANDARD (< USD 15,000/año): Atención por call center / portal web. Sin crédito (pago anticipado o contado).
+
+2. DESCUENTOS Y PROMOCIONES
+- Los descuentos base son acumulables con promociones de temporada hasta un máximo del 22%.
+- Descuentos adicionales por volumen en una sola orden:
+  > 50 unidades misma categoría: +3% | > 100 unidades: +5% | > 200 unidades: +8%
+- Toda negociación de descuento fuera de tabla requiere aprobación del Gerente de Ventas.
+- Las promociones vigentes se publican en el portal interno los primeros 5 días de cada mes.
+
+3. CRÉDITO Y COBRANZA
+- La evaluación de crédito inicial la realiza el área de Finanzas en un plazo de 3 días hábiles.
+- El límite de crédito de cada cliente es revisado semestralmente o ante cambios en el comportamiento de pago.
+- Cliente moroso: deuda vencida >15 días bloquea nuevos pedidos automáticamente en el ERP.
+- Deuda vencida >60 días: se escala a cobranza externa. Se notifica al cliente con 10 días de anticipación.
+- Los ejecutivos de ventas NO tienen autoridad para liberar bloqueos de crédito.
+
+4. ONBOARDING DE NUEVO CLIENTE
+Paso 1 — El ejecutivo completa el formulario "Alta de Cliente" en el CRM.
+Paso 2 — Finanzas realiza la verificación crediticia (RUT, referencias comerciales, historial bancario).
+Paso 3 — El cliente firma el contrato marco de compraventa.
+Paso 4 — Se asigna ejecutivo de cuenta según categoría proyectada.
+Paso 5 — El ejecutivo agenda la visita de bienvenida y presenta el catálogo de productos.
+Plazo total de onboarding: máximo 5 días hábiles desde la solicitud.
+
+5. GESTIÓN DE RECLAMOS
+- Todo reclamo debe registrarse en el CRM dentro de las 24 horas de recibido.
+- Tiempo de respuesta inicial al cliente: 4 horas hábiles.
+- Tiempo de resolución según tipo:
+  * Producto en mal estado o vencido: 48 horas (reposición o nota de crédito)
+  * Error en pedido (cantidad/producto): 24 horas (reposición o ajuste)
+  * Reclamo de facturación: 5 días hábiles
+- Reclamos no resueltos en plazo se escalan automáticamente al Jefe de Ventas.
+- Tasa de satisfacción objetivo: ≥ 90% (medida con encuesta post-resolución).
+
+6. PÉRDIDA DE CLIENTE (CHURN)
+- Un cliente que no compra en 90 días entra en estado "Inactivo" en el CRM.
+- El ejecutivo debe contactar al cliente inactivo con una propuesta de reactivación.
+- Si no hay respuesta en 30 días adicionales, el cliente pasa a estado "Perdido" y se activa el protocolo de win-back trimestral.
+
+CONTACTO VENTAS: ventas@northwind-mvp.com | CRM: crm.northwind-mvp.com

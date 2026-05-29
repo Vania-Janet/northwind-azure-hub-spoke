@@ -1,0 +1,50 @@
+REPORTE LOGÍSTICO MENSUAL — NORTHWIND TRADERS
+Período: Mayo 2025 | Departamento de Operaciones
+
+RESUMEN EJECUTIVO
+El mes de mayo cerró con un 94.2% de pedidos entregados a tiempo, superando el objetivo del 92%.
+Se procesaron 1,847 órdenes de despacho, un incremento del 11% respecto a abril.
+
+MÉTRICAS CLAVE DE OPERACIONES
+
+Despachos:
+- Total órdenes procesadas: 1,847
+- Entregadas a tiempo (≤ plazo prometido): 1,740 (94.2%)
+- Con retraso (1-2 días): 87 (4.7%)
+- Con retraso grave (3+ días): 20 (1.1%)  ← requiere seguimiento
+- Devoluciones recibidas: 43 (2.3%) — dentro del límite aceptable del 3%
+
+Causas de retrasos:
+1. Problemas de tráfico/ruta: 52% de los retrasos
+2. Falta de stock al momento del despacho: 28%
+3. Error en dirección de entrega: 12%
+4. Otros: 8%
+
+TRANSPORTISTAS CONTRATADOS
+- Transportes Rápido Norte: 820 despachos — 96.1% a tiempo ✓
+- LogiExpress S.A.: 650 despachos — 93.5% a tiempo ✓
+- MoverCarga Ltda.: 377 despachos — 91.0% a tiempo — en seguimiento
+
+STOCK AL CIERRE DE MAYO
+Productos en quiebre de stock durante el mes: 8 SKUs (vs. 14 en abril — mejora)
+SKUs con alerta de reorden activa al 31/05: 23
+Valor total del inventario al cierre: USD 284,500
+Rotación de inventario (días): 38 días promedio (objetivo: ≤42 días) ✓
+
+INCIDENTES DEL MES
+1. 15/05 — Daño en 3 pallets de conservas por humedad en zona de carga. Merma: USD 1,200.
+   Acción: instalación de plástico protector en zona afectada. Completado 18/05.
+2. 22/05 — Robo de 2 cajas de bebidas energéticas durante traslado (investigación en curso).
+   Acción: denuncia policial presentada, revisión de protocolo de custodia con transportistas.
+
+PROYECCIÓN JUNIO 2025
+Se espera un incremento del 8% en volumen por temporada de invierno (bebidas calientes, conservas).
+Se solicitó un turno extra de despacho los sábados para los meses de junio y julio.
+Proveedor Almacenes Centrales confirmó entrega de 45 pallets adicionales para la semana del 3/06.
+
+ACCIONES PENDIENTES
+[ ] Renovar contrato con Transportes Rápido Norte antes del 15/06
+[ ] Capacitación de nuevos operarios de almacén: 5 y 6 de junio
+[ ] Revisión anual de equipos de elevación (montacargas): programada para el 20/06
+
+Elaborado por: Jefe de Operaciones | Revisado por: Gerente General

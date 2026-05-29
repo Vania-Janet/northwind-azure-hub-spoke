@@ -1,0 +1,43 @@
+POLÍTICA DE GESTIÓN DE INVENTARIO — NORTHWIND TRADERS
+Departamento de Operaciones | Vigente desde Enero 2025
+
+1. OBJETIVO
+Garantizar la disponibilidad de productos para satisfacer la demanda de clientes, minimizando el costo
+de almacenamiento y evitando quiebres de stock o sobre-stock.
+
+2. CATEGORÍAS DE PRODUCTOS
+Northwind maneja tres categorías en su inventario:
+- Categoría A (Alta rotación): Bebidas, condimentos, lácteos. Revisión semanal. Stock mínimo: 30 días.
+- Categoría B (Rotación media): Conservas, cereales, aceites. Revisión quincenal. Stock mínimo: 45 días.
+- Categoría C (Baja rotación): Productos gourmet, especialidades. Revisión mensual. Stock mínimo: 60 días.
+
+3. NIVELES DE STOCK
+- Stock de seguridad: cantidad mínima que evita quiebres ante demanda inesperada.
+  Fórmula: Demanda diaria promedio × Plazo de entrega del proveedor × 1.5
+- Punto de reorden: nivel en el que se genera automáticamente una orden de compra.
+  Fórmula: Stock de seguridad + (Demanda diaria × Tiempo de reposición)
+- Stock máximo: capacidad física del almacén por categoría, definido por el Jefe de Almacén.
+
+4. CONTROL DE VENCIMIENTOS
+- Todos los productos con fecha de vencimiento deben almacenarse bajo método FEFO (First Expired, First Out).
+- El sistema ERP alerta con 90 días de anticipación al vencimiento de cualquier lote.
+- Productos con menos de 30 días para vencer son considerados "en riesgo" y se escalan al Jefe de Operaciones.
+- Destrucción de productos: requiere acta firmada por Operaciones y Finanzas, con registro fotográfico.
+
+5. CONTEO Y AUDITORÍA
+- Inventario cíclico: conteo diario de los 20 productos de mayor valor (Categoría A top 20).
+- Inventario mensual: conteo completo de todas las categorías el último viernes de cada mes.
+- Inventario anual: auditoría con presencia de un revisor externo, primer trimestre de cada año.
+- Tolerancia de diferencia aceptable: ±0.5% en valor total. Diferencias mayores requieren investigación.
+
+6. MERMA Y PÉRDIDAS
+La merma aceptada por categoría es:
+- Bebidas: 0.3%   | Lácteos: 1.0%   | Conservas: 0.2%   | Cereales: 0.5%
+Cualquier merma que supere estos límites debe ser reportada y justificada por el Jefe de Almacén.
+
+7. PROVEEDORES Y REPOSICIÓN
+- Proveedor principal: pedido con 15 días de anticipación.
+- Proveedor alternativo (emergencias): pedido con 48 horas, costo adicional del 8% máximo autorizado.
+- Todas las órdenes de compra sobre USD 5,000 requieren aprobación del Gerente de Operaciones.
+
+CONTACTO: Consultas de inventario: almacen@northwind-mvp.com | Ext. 214
