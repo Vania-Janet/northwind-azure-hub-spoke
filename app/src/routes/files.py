@@ -4,15 +4,9 @@ import config
 
 files_bp = Blueprint("files", __name__)
 
-_STORAGE_CONFIG = {
-    "ops": {
-        "conn": lambda: config.AZURE_STORAGE_OPS_CONN,
-        "container": lambda: config.AZURE_STORAGE_OPS_CONTAINER,
-    },
-    "ventas": {
-        "conn": lambda: config.AZURE_STORAGE_VENTAS_CONN,
-        "container": lambda: config.AZURE_STORAGE_VENTAS_CONTAINER,
-    },
+_DEPT_CONTAINERS = {
+    "ops": lambda: config.AZURE_STORAGE_OPS_CONTAINER,
+    "ventas": lambda: config.AZURE_STORAGE_VENTAS_CONTAINER,
 }
 
 
@@ -21,19 +15,18 @@ def list_files():
     user = get_current_user()
     dept = user["department"]
 
-    cfg = _STORAGE_CONFIG.get(dept)
-    if not cfg:
+    container_fn = _DEPT_CONTAINERS.get(dept)
+    if not container_fn:
         return jsonify({"files": [], "error": "Departamento sin almacenamiento configurado"}), 200
 
-    conn_str = cfg["conn"]()
-    container = cfg["container"]()
-
-    if not conn_str:
+    if not config.AZURE_STORAGE_CONN:
         return jsonify({"files": [], "error": "Almacenamiento no configurado aún"}), 200
+
+    container = container_fn()
 
     try:
         from azure.storage.blob import BlobServiceClient
-        client = BlobServiceClient.from_connection_string(conn_str)
+        client = BlobServiceClient.from_connection_string(config.AZURE_STORAGE_CONN)
         container_client = client.get_container_client(container)
         blobs = [
             {"name": b.name, "size_kb": round((b.size or 0) / 1024, 1)}
