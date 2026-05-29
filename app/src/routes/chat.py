@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify, session
 from auth import get_current_user
 from ai.agent import get_ai_response
+import database
 
 chat_bp = Blueprint("chat", __name__)
 
@@ -8,6 +9,8 @@ chat_bp = Blueprint("chat", __name__)
 @chat_bp.route("/")
 def index():
     user = get_current_user()
+    if "history" not in session:
+        session["history"] = database.get_history(user["email"])
     return render_template("index.html", user=user)
 
 
@@ -26,7 +29,7 @@ def chat():
     department = user["department"]
 
     if "history" not in session:
-        session["history"] = []
+        session["history"] = database.get_history(user["email"])
 
     history = session["history"]
 
@@ -38,6 +41,9 @@ def chat():
     history.append({"role": "user", "content": user_message})
     history.append({"role": "assistant", "content": reply})
     session["history"] = history[-20:]
+
+    database.save_message(user["email"], department, "user", user_message)
+    database.save_message(user["email"], department, "assistant", reply)
 
     return jsonify({"reply": reply})
 
