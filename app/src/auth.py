@@ -9,6 +9,9 @@ _DEPT_KEYWORDS = {
 }
 
 
+_VALID_DEPTS = set(_DEPT_KEYWORDS.keys())
+
+
 def get_current_user():
     header = request.headers.get("X-MS-CLIENT-PRINCIPAL")
 
@@ -30,11 +33,22 @@ def get_current_user():
         except Exception:
             pass
 
-    return {
+    user = {
         "name": config.LOCAL_DEV_USER,
         "email": config.LOCAL_DEV_USER,
         "department": config.LOCAL_DEV_DEPARTMENT,
     }
+
+    # Demo override: ?dept=ventas / ?dept=ops (ignored when Easy Auth is active)
+    dept_param = request.args.get("dept", "").lower()
+    if dept_param in _VALID_DEPTS:
+        user = {
+            "name": f"Demo ({dept_param.title()})",
+            "email": f"demo-{dept_param}@northwind.com",
+            "department": dept_param,
+        }
+
+    return user
 
 
 def _claims_dict(principal):

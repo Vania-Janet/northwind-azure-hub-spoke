@@ -5,7 +5,12 @@
     <div class="col-md-8">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="mb-0">Agente IA — Departamento de {{ user.department | title }}</h5>
-            <button id="clear-btn" class="btn btn-sm btn-outline-secondary">Nueva conversación</button>
+            <div class="d-flex gap-2">
+                <button id="files-btn" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#filesModal">
+                    Ver archivos
+                </button>
+                <button id="clear-btn" class="btn btn-sm btn-outline-secondary">Nueva conversación</button>
+            </div>
         </div>
 
         <div id="chat-box" class="border rounded p-3 mb-3 bg-light" style="height: 420px; overflow-y: auto;">
@@ -22,10 +27,55 @@
     </div>
 </div>
 
+<!-- Modal de archivos del departamento -->
+<div class="modal fade" id="filesModal" tabindex="-1" aria-labelledby="filesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filesModalLabel">Archivos — {{ user.department | title }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="files-body">
+                <p class="text-muted text-center">Cargando...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 const chatBox = document.getElementById('chat-box');
 const form = document.getElementById('chat-form');
 const input = document.getElementById('user-input');
+
+document.getElementById('filesModal').addEventListener('show.bs.modal', async () => {
+    const body = document.getElementById('files-body');
+    body.innerHTML = '<p class="text-muted text-center">Cargando...</p>';
+    try {
+        const res = await fetch('/api/files');
+        const data = await res.json();
+        if (data.error) {
+            body.innerHTML = `<p class="text-warning text-center">${data.error}</p>`;
+            return;
+        }
+        if (!data.files || data.files.length === 0) {
+            body.innerHTML = '<p class="text-muted text-center">No hay archivos en este contenedor.</p>';
+            return;
+        }
+        const rows = data.files.map(f =>
+            `<tr><td>${f.name}</td><td class="text-end text-muted small">${f.size_kb} KB</td></tr>`
+        ).join('');
+        body.innerHTML = `<p class="text-muted small mb-2">Contenedor: <code>${data.container}</code></p>
+            <table class="table table-sm table-hover mb-0">
+                <thead><tr><th>Archivo</th><th class="text-end">Tamaño</th></tr></thead>
+                <tbody>${rows}</tbody>
+            </table>`;
+    } catch {
+        body.innerHTML = '<p class="text-danger text-center">Error al conectar con el almacenamiento.</p>';
+    }
+});
 
 async function loadHistory() {
     const res = await fetch('/api/chat/history');
