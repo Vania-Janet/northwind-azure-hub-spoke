@@ -68,16 +68,6 @@ Cuando el plan este revisado y aprobado:
 terraform apply tfplan
 ```
 
-Importante: no ejecutes `terraform apply` hasta confirmar que quieres crear recursos en Azure.
-
 ## Costos de Fase 1
 
-La Fase 1 crea Resource Group, VNets, subnets y peering. Estos recursos no tienen costo fijo mensual mientras estan ociosos. Azure Virtual Network no tiene cargo por crear la VNet, pero el VNet Peering puede cobrar por trafico de entrada y salida entre redes.
-
-Estimacion practica para Fase 1:
-
-- Sin trafico entre Hub y Spokes: aproximadamente `USD 0/mes`.
-- Con pruebas ligeras de conectividad: normalmente centavos, dependiendo del volumen de GB transferidos por peering.
-- Sin VPN Gateway, Bastion, App Service, SQL, Storage ni IA: no hay cargos horarios relevantes en esta fase.
-
-Puedes dejar esta fase viva durante dias o semanas con costo cercano a cero, siempre que no agregues servicios con cobro horario ni generes trafico significativo entre VNets.
+La Fase 1 crea Resource Group, VNets, subnets y peering. Estos recursos no tienen costo fijo mensual mientras no sean usados. Azure Virtual Network no tiene cargo por crear la VNet, pero el VNet Peering puede cobrar por trafico de entrada y salida entre redes.
